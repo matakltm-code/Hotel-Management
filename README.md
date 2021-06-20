@@ -1,3 +1,7 @@
+# Software
+    1. laravel 8x
+    2. Authentication: Laravel ui
+
 # Create project using laravel installer
     1. laravel new hotel-management
     2. cd hotel-management
@@ -27,3 +31,6 @@
             </VirtualHost>
         */
 
+# Basic commands
+    // CREATE MODEL WITH RestFul Controller with migration file
+    1. php artisan make:model Profile -c -r -m
