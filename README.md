@@ -8,5 +8,22 @@
     ## Setup database
     1. Name: hotel_management
 
-    ## Setup server url
-    1. Name: hotel_management
+    ## Edit server url
+    1. Hosts File in the computer
+       Directory: C:\Windows\System32\drivers\etc
+       File: hosts
+       Added: 
+       /*
+            127.0.0.1 hotel-management.test
+       */
+    2. Xampp File
+        Directory: C:\xampp\apache\conf\extra
+        File: httpd-vhosts.conf
+        Added
+        /*
+            <VirtualHost *:80>
+                DocumentRoot "C:/xampp/htdocs/uog-thesis-projects/hotel-management/public"
+                ServerName hotel-management.test
+            </VirtualHost>
+        */
+
