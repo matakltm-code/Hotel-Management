@@ -33,4 +33,5 @@
 
 # Basic commands
     // CREATE MODEL WITH RestFul Controller with migration file
-    1. php artisan make:model Profile -c -r -m
+    1. php artisan make:model Room -c -r -m
+    2. php artisan make:model Profile -c -r -m

@@ -46,6 +46,36 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">{{ __('Rooms') }}</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Serviecs
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">
+                                    Food services
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    Touris Attraction
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    About Us
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    Contact us
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    Gallery
+                                </a>
+                            </div>
+                        </li>
+
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
