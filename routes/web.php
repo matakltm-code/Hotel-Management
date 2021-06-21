@@ -21,17 +21,10 @@ Route::resource('/rooms', RoomController::class);
 // All laravel ui auth package routes
 Auth::routes();
 
-
-// -------- Profile Route --------
-// | GET|HEAD  | profile                | App\Http\Controllers\ProfileController@index                           |
-// | POST      | profile                | App\Http\Controllers\ProfileController@store                           |
-// | GET|HEAD  | profile/create         | App\Http\Controllers\ProfileController@create                          |
-// | GET|HEAD  | profile/{profile}      | App\Http\Controllers\ProfileController@show                            |
-// | PUT|PATCH | profile/{profile}      | App\Http\Controllers\ProfileController@update                          |
-// | DELETE    | profile/{profile}      | App\Http\Controllers\ProfileController@destroy                         |
-// | GET|HEAD  | profile/{profile}/edit | App\Http\Controllers\ProfileController@edit  
-Route::resource('profile', ProfileController::class);
-
+// Profile route
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index']);
+Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'edit']);
+Route::patch('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'update']);
 
 
 // Services Pages

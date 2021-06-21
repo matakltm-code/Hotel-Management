@@ -115,7 +115,10 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
+                                <a class="dropdown-item <?=(Route::current()->uri() == 'profile' ? 'active':'')?>"
+                                    href="/profile">
+                                    Profile
+                                </a>
 
                                 {{-- Logout --}}
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

@@ -2,84 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        //
+        $user = User::findorfail(auth()->user()->id);
+        return view('profile.index', [
+            'user' => $user
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function edit()
     {
-        //
+        // ProfileController::checkIfItsMe($user->id);
+
+        $user = User::findorfail(auth()->user()->id);
+        return view('profile.edit', [
+            'user' => $user
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function update(User $user)
     {
-        //
+        // ProfileController::checkIfItsMe($user->id);
+
+        $data = request()->validate([
+            'name' => ['required'],
+            'email' => ['required', 'email'],
+            'phone' => ['required'],
+            'address' => ['required']
+        ]);
+        // dd($data);
+        User::where('id', auth()->user()->id)->update($data);
+        return redirect('/profile');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Profile $profile)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Profile $profile)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Profile $profile)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Profile $profile)
-    {
-        //
-    }
 }
