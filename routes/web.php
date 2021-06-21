@@ -4,19 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
 
-// Route::get('/', function () {
-//     // IF the user logged in
-//     if(Auth::check()){
-//         return view('home');
-//     }
-//     // If not the user is not logged in
-//     return view('guest.index');
-// });
-
-Auth::routes();
 
 
-
+Route::view('/', 'welcome');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // --------- Rooms Route --------
@@ -26,7 +16,10 @@ Auth::routes();
 // | PUT|PATCH | {}                     | App\Http\Controllers\RoomController@update                            |
 // | DELETE    | {}                     | App\Http\Controllers\RoomController@destroy                           |
 // | GET|HEAD  | {}/edit                | App\Http\Controllers\RoomController@edit 
-Route::resource('/', RoomController::class);
+Route::resource('/rooms', RoomController::class);
+
+// All laravel ui auth package routes
+Auth::routes();
 
 
 // -------- Profile Route --------
@@ -38,3 +31,33 @@ Route::resource('/', RoomController::class);
 // | DELETE    | profile/{profile}      | App\Http\Controllers\ProfileController@destroy                         |
 // | GET|HEAD  | profile/{profile}/edit | App\Http\Controllers\ProfileController@edit  
 Route::resource('profile', ProfileController::class);
+
+
+
+// Services Pages
+Route::prefix('services')->group(function () {
+    // /services/food-services
+    Route::get('/food-services', function () {
+        return view('services.food-services');
+    });
+
+    // /services/tourist-attraction
+    Route::get('/tourist-attraction', function () {
+        return view('services.tourist-attraction');
+    });
+
+    // /services/about-us
+    Route::get('/about-us', function () {
+        return view('services.about-us');
+    });
+
+    // /services/contact-us
+    Route::get('/contact-us', function () {
+        return view('services.contact-us');
+    });
+
+    // /services/gallery
+    Route::get('/gallery', function () {
+        return view('services.gallery');
+    });
+});

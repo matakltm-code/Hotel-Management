@@ -19,6 +19,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    {{-- ------------- --}}
+    {{-- Jquery --}}
+    <script src="{{ asset('jq/jquery-ui.css') }}"></script>
+    <script src="{{ asset('jq/jquery.js') }}"></script>
+    <script src="{{ asset('jq/jquery-ui.js') }}"></script>
+
+    {{-- ------------- --}}
 </head>
 
 <body>
@@ -47,8 +55,12 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">{{ __('Rooms') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == '/' ? 'active':'')?>">
+                            <a class="nav-link" href="/">{{ __('Home') }}</a>
+                        </li>
+
+                        <li class="nav-item <?=(Route::current()->uri() == 'rooms' ? 'active':'')?>">
+                            <a class="nav-link" href="/rooms">{{ __('Rooms') }}</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -58,19 +70,24 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item <?=(Route::current()->uri() == 'services/food-services' ? 'active':'')?>"
+                                    href="/services/food-services">
                                     Food services
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item <?=(Route::current()->uri() == 'services/tourist-attraction' ? 'active':'')?>"
+                                    href="/services/tourist-attraction">
                                     Touris Attraction
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item <?=(Route::current()->uri() == 'services/about-us' ? 'active':'')?>"
+                                    href="/services/about-us">
                                     About Us
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item <?=(Route::current()->uri() == 'services/contact-us' ? 'active':'')?>"
+                                    href="/services/contact-us">
                                     Contact us
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item <?=(Route::current()->uri() == 'services/gallery' ? 'active':'')?>"
+                                    href="/services/gallery">
                                     Gallery
                                 </a>
                             </div>
@@ -78,29 +95,33 @@
 
                         @guest
                         @if (Route::has('login'))
-                        <li class="nav-item">
+                        <li class="nav-item <?=(Route::currentRouteName() == 'login' ? 'active':'')?>">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @endif
 
                         @if (Route::has('register'))
-                        <li class="nav-item">
+                        <li class="nav-item <?=(Route::currentRouteName() == 'register' ? 'active':'')?>">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown"
+                                class="nav-link dropdown-toggle  <?=(Route::current()->uri() == '/profile' ? 'active':'')?>"
+                                href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+
+                                {{-- Logout --}}
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
@@ -112,7 +133,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="<?=(Route::current()->uri() == '/' ? '':'py-4')?>">
             @yield('content')
         </main>
     </div>
