@@ -19,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/card.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/users_feed.css') }}" rel="stylesheet">
 
     {{-- ------------- --}}
     {{-- Jquery --}}
@@ -63,6 +65,26 @@
                             <a class="nav-link" href="/rooms">{{ __('Rooms') }}</a>
                         </li>
 
+                        {{-- AdminLinks --}}
+                        {{-- @if(auth()->user()->user_type == 'admin')
+                        @endif --}}
+                        @auth
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Users Management') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Inbox') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Bookd Rooms') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Room Management') }}</a>
+                        </li>
+                        @endauth
+
+
+                        @guest
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -93,7 +115,6 @@
                             </div>
                         </li>
 
-                        @guest
                         @if (Route::has('login'))
                         <li class="nav-item <?=(Route::currentRouteName() == 'login' ? 'active':'')?>">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

@@ -20,11 +20,13 @@ class CreateUsersTable extends Migration
             // 
             $table->string('phone');
             $table->string('address');
-            $table->string('user_type')->nullable(); // admin, manager, auditor, receptionist, customer
+            $table->string('user_type')->default('customer'); // admin, manager, auditor, receptionist, customer
             $table->boolean('active_account')->default(true);
             // 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            
+            $table->timestamp('last_login_at')->nullable(); // C:\xampp\htdocs\uog-thesis-projects\hotel-management\vendor\laravel\ui\auth-backend\AuthenticatesUsers.php
             $table->rememberToken();
             $table->timestamps();
         });

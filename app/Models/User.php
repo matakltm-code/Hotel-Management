@@ -10,6 +10,12 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    // Table
+    protected $table = 'users';
+    // Primary Key
+    protected $primaryKey = 'id';
+    // created_at and updated_at 
+    public $timestamps = true;
 
     /**
      * The attributes that are mass assignable.
@@ -43,4 +49,35 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * $user = User::find(1);
+     * $user->is_admin; // true or false
+     * $user->is_manager; // true or false
+     * $user->is_auditor; // true or false
+     * $user->is_receptionist; // true or false
+     * $user->is_customer; // true or false
+     * 
+     */
+    // UserTypes in user_type column: admin, manager, auditor, receptionist, customer
+    public function getIsAdminAttribute()
+    {
+        return auth()->user()->user_type == 'admin';
+    }
+    public function getIsManagerAttribute()
+    {
+        return auth()->user()->user_type == 'manager';
+    }
+    public function getIsAuditorAttribute()
+    {
+        return auth()->user()->user_type == 'auditor';
+    }
+    public function getIsReceptionistAttribute()
+    {
+        return auth()->user()->user_type == 'receptionist';
+    }
+    public function getIsCustomerAttribute()
+    {
+        return auth()->user()->user_type == 'customer';
+    }
 }

@@ -35,3 +35,12 @@
     // CREATE MODEL WITH RestFul Controller with migration file
     1. php artisan make:model Room -c -r -m
     2. php artisan make:model Profile -c -r -m
+
+# Phpstorm
+    1. laravel idea package
+        - https://github.com/barryvdh/laravel-ide-helper
+        - php artisan ide-helper:generate
+        - php artisan ide-helper:models
+        - php artisan ide-helper:meta
+        // Automatic PHPDoc generation for Laravel Facades
+        - php artisan ide-helper:generate

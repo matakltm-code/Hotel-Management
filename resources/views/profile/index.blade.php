@@ -21,7 +21,14 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4>Your Profile</h4>
+                            <h4 class="font-weight-bold">
+                                {{ $user->is_admin ? 'Admin':'' }}
+                                {{ $user->is_manager ? 'Manager':'' }}
+                                {{ $user->is_auditor ? 'Auditor':'' }}
+                                {{ $user->is_receptionist ? 'Receptionist':'' }}
+                                {{ $user->is_customer ? 'Customer':'' }}
+                                User Profile
+                            </h4>
                             <hr>
                         </div>
                     </div>
@@ -47,6 +54,9 @@
                             </p>
                             <p class="h5 pb-1">
                                 Account created at: {{ $user->created_at->diffForHumans() }}
+                            </p>
+                            <p class="h5 pb-1">
+                                Last logged in: {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}
                             </p>
 
                         </div>
