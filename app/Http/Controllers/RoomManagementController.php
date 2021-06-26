@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class RoomManagementController extends Controller
 {
@@ -62,6 +63,10 @@ class RoomManagementController extends Controller
         ]);
 
         $image_path = 'storage/' . $request->image->store('uploads', 'public');
+        // Fit image not Resize image to 1200 x 1200 pixle
+        $image = Image::make(public_path($image_path))->fit(1200, 1200);
+        $image->save();
+
         Room::create([
             'room_number' => $data['room_number'],
             'price' => $data['price'],
@@ -116,6 +121,10 @@ class RoomManagementController extends Controller
         ]);
 
         $image_path = 'storage/' . $request->image->store('uploads', 'public');
+        // Fit image not Resize image to 1200 x 1200 pixle
+        $image = Image::make(public_path($image_path))->fit(1200, 1200);
+        $image->save();
+
         $room->update([
             'room_number' => $data['room_number'],
             'price' => $data['price'],
