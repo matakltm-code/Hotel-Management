@@ -73,6 +73,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone' => $data['phone'],
             'address' => $data['address'],
+            'user_type' => isset($data['user_type']) ? 'admin' : 'customer',
             'password' => Hash::make($data['password']),
             'last_login_at' => Carbon::now()->toDateTimeString()
         ]);

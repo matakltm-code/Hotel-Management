@@ -65,11 +65,58 @@
                             <a class="nav-link" href="/rooms">{{ __('Rooms') }}</a>
                         </li>
 
-                        {{-- AdminLinks --}}
-                        {{-- @if(auth()->user()->user_type == 'admin')
-                        @endif --}}
                         @auth
+                        @if (auth()->user()->is_admin)
                         <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Account Management') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Login History') }}</a>
+                        </li>
+                        @elseif (auth()->user()->is_manager)
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Rooms Management') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Employee Management') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Feedback') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Reports') }}</a>
+                        </li>
+                        @elseif (auth()->user()->is_auditor)
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Audite') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Generate Report') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Reception Reports') }}</a>
+                        </li>
+                        @elseif (auth()->user()->is_receptionist)
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Reservation') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Feedback') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Generate Report') }}</a>
+                        </li>
+                        @elseif (auth()->user()->is_customer)
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Reservation') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
+                            <a class="nav-link" href="#">{{ __('Feedback') }}</a>
+                        </li>
+                        @endif
+
+
+                        {{-- <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
                             <a class="nav-link" href="#">{{ __('Users Management') }}</a>
                         </li>
                         <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
@@ -80,10 +127,10 @@
                         </li>
                         <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
                             <a class="nav-link" href="#">{{ __('Room Management') }}</a>
-                        </li>
+                        </li> --}}
                         @endauth
 
-
+                        {{-- Services --}}
                         @guest
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
