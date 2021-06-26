@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ChangepasswordController;
+use App\Http\Controllers\RoomManagementController;
 
 Route::view('/', 'welcome');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -56,3 +57,14 @@ Route::get('/account', [AccountController::class, 'index']);
 Route::post('/account', [AccountController::class, 'store']);
 Route::get('/account/login-history', [AccountController::class, 'login_history']);
 Route::post('/account/enable-disable', [AccountController::class, 'enable_disable_account']);
+
+
+// Manager
+Route::get('/room-management', [RoomManagementController::class, 'index']);
+Route::get('/room-management/create', [RoomManagementController::class, 'create']);
+Route::post('/room-management', [RoomManagementController::class, 'store']);
+Route::get('/room-management/{room}', [RoomManagementController::class, 'show']);
+Route::get('/room-management/{room}/edit', [RoomManagementController::class, 'edit']);
+Route::put('/room-management/{room}', [RoomManagementController::class, 'update']);
+Route::delete('/room-management/{room}', [RoomManagementController::class, 'destroy']);
+Route::post('/room-management/enable-disable', [RoomManagementController::class, 'enable_disable_room']);

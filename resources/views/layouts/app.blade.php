@@ -74,8 +74,8 @@
                             <a class="nav-link" href="/account/login-history">{{ __('Login History') }}</a>
                         </li>
                         @elseif (auth()->user()->is_manager)
-                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
-                            <a class="nav-link" href="#">{{ __('Rooms Management') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == 'room-management' ? 'active':'')?>">
+                            <a class="nav-link" href="/room-management">{{ __('Rooms Management') }}</a>
                         </li>
                         <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
                             <a class="nav-link" href="#">{{ __('Employee Management') }}</a>
