@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\AccountController;
-
+use App\Http\Controllers\ChangepasswordController;
 
 Route::view('/', 'welcome');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -18,6 +18,8 @@ Auth::routes();
 Route::get('/profile', [ProfileController::class, 'index']);
 Route::get('/profile/edit', [ProfileController::class, 'edit']);
 Route::patch('/profile/{profile}', [ProfileController::class, 'update']);
+Route::get('/profile/change-password', [ChangepasswordController::class, 'index']);
+Route::post('/profile/change-password', [ChangepasswordController::class, 'store']);
 
 
 // Services Pages

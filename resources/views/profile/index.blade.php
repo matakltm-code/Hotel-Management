@@ -12,6 +12,9 @@
                 <a href="/profile/edit" class="list-group-item list-group-item-action">
                     Edit Profile
                 </a>
+                <a href="/profile/change-password" class="list-group-item list-group-item-action">
+                    Change password
+                </a>
 
 
             </div>
