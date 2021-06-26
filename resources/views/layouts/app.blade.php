@@ -196,6 +196,86 @@
             @yield('content')
         </main>
     </div>
+    {{-- CKeditor files --}}
+    <script src="/ckeditor5/ckeditor.js"></script>
+    <script src="/ckeditor5/ckeditor.js.map"></script>
+    <script>
+        const watchdog = new CKSource.EditorWatchdog();
+
+		window.watchdog = watchdog;
+
+		watchdog.setCreator( ( element, config ) => {
+			return CKSource.Editor
+				.create( element, config )
+				.then( editor => {
+
+
+
+
+					return editor;
+				} )
+		} );
+
+		watchdog.setDestructor( editor => {
+
+
+
+			return editor.destroy();
+		} );
+
+		watchdog.on( 'error', handleError );
+
+		watchdog
+			.create( document.querySelector( '.editor' ), {
+
+				toolbar: {
+					items: [
+						'heading',
+						'|',
+						'underline',
+						'bold',
+						'italic',
+						'link',
+						'bulletedList',
+						'numberedList',
+						'|',
+						'outdent',
+						'indent',
+						'|',
+						'undo',
+						'redo',
+						'-',
+						'alignment',
+						'fontBackgroundColor',
+						'fontColor',
+						'fontFamily',
+						'fontSize',
+						'highlight',
+						'horizontalLine',
+						'subscript',
+						'superscript',
+						'strikethrough',
+						'insertTable',
+						'blockQuote'
+					],
+					shouldNotGroupWhenFull: true
+				},
+				language: 'en',
+				licenseKey: '',
+
+
+
+			} )
+			.catch( handleError );
+
+		function handleError( error ) {
+			console.error( 'Oops, something went wrong!' );
+			console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+			console.warn( 'Build id: 8uo7e3v0si9i-uk35tb5rkyg' );
+			console.error( error );
+		}
+
+    </script>
 </body>
 
 </html>
