@@ -67,11 +67,11 @@
 
                         @auth
                         @if (auth()->user()->is_admin)
-                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
-                            <a class="nav-link" href="#">{{ __('Account Management') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == 'account' ? 'active':'')?>">
+                            <a class="nav-link" href="/account">{{ __('Account Management') }}</a>
                         </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
-                            <a class="nav-link" href="#">{{ __('Login History') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == 'account/login-history' ? 'active':'')?>">
+                            <a class="nav-link" href="/account/login-history">{{ __('Login History') }}</a>
                         </li>
                         @elseif (auth()->user()->is_manager)
                         <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
@@ -115,19 +115,6 @@
                         </li>
                         @endif
 
-
-                        {{-- <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
-                            <a class="nav-link" href="#">{{ __('Users Management') }}</a>
-                        </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
-                            <a class="nav-link" href="#">{{ __('Inbox') }}</a>
-                        </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
-                            <a class="nav-link" href="#">{{ __('Bookd Rooms') }}</a>
-                        </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
-                            <a class="nav-link" href="#">{{ __('Room Management') }}</a>
-                        </li> --}}
                         @endauth
 
                         {{-- Services --}}
@@ -205,6 +192,7 @@
         </nav>
 
         <main class="<?=(Route::current()->uri() == '/' ? '':'py-4')?>">
+            @include('inc.messages')
             @yield('content')
         </main>
     </div>

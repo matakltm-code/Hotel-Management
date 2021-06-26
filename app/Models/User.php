@@ -14,7 +14,7 @@ class User extends Authenticatable
     protected $table = 'users';
     // Primary Key
     protected $primaryKey = 'id';
-    // created_at and updated_at 
+    // created_at and updated_at
     public $timestamps = true;
 
     /**
@@ -57,7 +57,7 @@ class User extends Authenticatable
      * $user->is_auditor; // true or false
      * $user->is_receptionist; // true or false
      * $user->is_customer; // true or false
-     * 
+     *
      */
     // UserTypes in user_type column: admin, manager, auditor, receptionist, customer
     public function getIsAdminAttribute()
@@ -79,5 +79,26 @@ class User extends Authenticatable
     public function getIsCustomerAttribute()
     {
         return auth()->user()->user_type == 'customer';
+    }
+
+    public function account_type_text($user_type)
+    {
+        $result = '';
+        if ($user_type == 'admin') {
+            $result = 'Adminstrator';
+        }
+        if ($user_type == 'manager') {
+            $result = 'Manager';
+        }
+        if ($user_type == 'auditor') {
+            $result = 'Auditor';
+        }
+        if ($user_type == 'receptionist') {
+            $result = 'Receptionist';
+        }
+        if ($user_type == 'customer') {
+            $result = 'Customer';
+        }
+        return $result;
     }
 }

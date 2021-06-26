@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 use Carbon\Carbon;
+
 class RegisterController extends Controller
 {
     /*
@@ -73,7 +74,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone' => $data['phone'],
             'address' => $data['address'],
-            'user_type' => isset($data['user_type']) ? 'admin' : 'customer',
+            'user_type' => 'customer',
             'password' => Hash::make($data['password']),
             'last_login_at' => Carbon::now()->toDateTimeString()
         ]);

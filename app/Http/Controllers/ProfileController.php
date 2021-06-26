@@ -39,16 +39,13 @@ class ProfileController extends Controller
         // ProfileController::checkIfItsMe($user->id);
 
         $data = request()->validate([
-            'name' => ['required'],
-            'email' => ['required', 'email'],
-            'phone' => ['required'],
-            'address' => ['required']
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'max:255'],
+            'address' => ['required', 'max:255'],
         ]);
         // dd($data);
         User::where('id', auth()->user()->id)->update($data);
-        return redirect('/profile');
+        return redirect('/profile')->with('success', 'Profile updated successfuly!');
     }
-
-
-
 }
