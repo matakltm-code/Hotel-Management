@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AuditController;
 use App\Http\Controllers\ChangepasswordController;
 use App\Http\Controllers\RoomManagementController;
 use App\Models\User;
@@ -75,3 +76,16 @@ Route::get('/employee-management', function () {
         'employees' => User::where('user_type', '!=', 'customer')->paginate(10)
     ]);
 });
+
+
+
+// Auditor
+
+Route::get('/audits', [AuditController::class, 'index']);
+Route::get('/audits/create', [AuditController::class, 'create']);
+Route::post('/audits', [AuditController::class, 'store']);
+// Route::get('/audits/{audit}', [AuditController::class, 'show']);
+Route::get('/audits/{audit}/edit', [AuditController::class, 'edit']);
+Route::patch('/audits/{audit}', [AuditController::class, 'update']);
+Route::delete('/audits/{audit}', [AuditController::class, 'destroy']);
+Route::get('/audits/report', [AuditController::class, 'audit_dashboard']);

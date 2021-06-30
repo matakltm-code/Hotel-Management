@@ -83,15 +83,15 @@
                         <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
                             <a class="nav-link" href="#">{{ __('Feedback') }}</a>
                         </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
-                            <a class="nav-link" href="#">{{ __('Reports') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == 'audits' ? 'active':'')?>">
+                            <a class="nav-link" href="/audits">{{ __('Reports') }}</a>
                         </li>
                         @elseif (auth()->user()->is_auditor)
-                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
-                            <a class="nav-link" href="#">{{ __('Audite') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == 'audits' ? 'active':'')?>">
+                            <a class="nav-link" href="/audits">{{ __('Audite') }}</a>
                         </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
-                            <a class="nav-link" href="#">{{ __('Generate Report') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == 'audits/report' ? 'active':'')?>">
+                            <a class="nav-link" href="/audits/report">{{ __('Generate Report') }}</a>
                         </li>
                         <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
                             <a class="nav-link" href="#">{{ __('Reception Reports') }}</a>
