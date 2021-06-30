@@ -6,6 +6,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ChangepasswordController;
 use App\Http\Controllers\RoomManagementController;
+use App\Models\User;
 
 Route::view('/', 'welcome');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -68,3 +69,9 @@ Route::get('/room-management/{room}/edit', [RoomManagementController::class, 'ed
 Route::put('/room-management/{room}', [RoomManagementController::class, 'update']);
 Route::delete('/room-management/{room}', [RoomManagementController::class, 'destroy']);
 Route::post('/room-management/enable-disable', [RoomManagementController::class, 'enable_disable_room']);
+
+Route::get('/employee-management', function () {
+    return view('manager.employee-management.index', [
+        'employees' => User::where('user_type', '!=', 'customer')->paginate(10)
+    ]);
+});

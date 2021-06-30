@@ -77,8 +77,8 @@
                         <li class="nav-item <?=(Route::current()->uri() == 'room-management' ? 'active':'')?>">
                             <a class="nav-link" href="/room-management">{{ __('Rooms Management') }}</a>
                         </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
-                            <a class="nav-link" href="#">{{ __('Employee Management') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == 'employee-management' ? 'active':'')?>">
+                            <a class="nav-link" href="/employee-management">{{ __('Employee Management') }}</a>
                         </li>
                         <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
                             <a class="nav-link" href="#">{{ __('Feedback') }}</a>
