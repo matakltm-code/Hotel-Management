@@ -10,9 +10,18 @@ use App\Http\Controllers\RoomManagementController;
 use App\Models\User;
 
 Route::view('/', 'welcome');
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('/rooms', RoomController::class);
+// Rooms controller
+// Route::resource('/rooms', RoomController::class);
+Route::get('/rooms', [RoomController::class, 'index']);
+// Route::get('/rooms/create', [RoomController::class, 'create']);
+Route::post('/rooms', [RoomController::class, 'store']); // Reserve/Book a room
+Route::get('/rooms/{room}', [RoomController::class, 'show']);
+// Route::get('/rooms/{room}/edit', [RoomController::class, 'edit']);
+// Route::patch('/rooms/{room}', [RoomController::class, 'update']);
+// Route::delete('/rooms/{room}', [RoomController::class, 'destroy']);
+
+
 
 // All laravel ui auth package routes
 Auth::routes();

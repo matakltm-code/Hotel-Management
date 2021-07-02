@@ -4,14 +4,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            {{-- CkEditor --}}
-            {{-- <div class="row">
-                <div class="">
-                    <div class="editor">
-                        <textarea name="editor" cols="30" rows="10"></textarea>
-                    </div>
-                </div>
-            </div> --}}
             <div class="card">
                 <div class="card-header">{{ __('Users login history') }}</div>
 

@@ -17,18 +17,6 @@ class User extends Authenticatable
     // created_at and updated_at
     public $timestamps = true;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    // protected $fillable = [
-    //     'name',
-    //     'email',
-    //     'phone',
-    //     'address',
-    //     'password',
-    // ];
     protected $guarded = [];
 
     /**
@@ -100,5 +88,15 @@ class User extends Authenticatable
             $result = 'Customer';
         }
         return $result;
+    }
+
+    /**
+     * Get all of the booked_rooms for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function booked_rooms()
+    {
+        return $this->hasMany(BookedRoom::class, 'user_id', 'id');
     }
 }
