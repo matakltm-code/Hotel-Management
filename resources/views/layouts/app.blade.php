@@ -97,8 +97,8 @@
                             <a class="nav-link" href="#">{{ __('Reception Reports') }}</a>
                         </li>
                         @elseif (auth()->user()->is_receptionist)
-                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
-                            <a class="nav-link" href="#">{{ __('Reservation') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == 'room/r/reservation' ? 'active':'')?>">
+                            <a class="nav-link" href="/room/r/reservation">{{ __('Reservation') }}</a>
                         </li>
                         <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
                             <a class="nav-link" href="#">{{ __('Feedback') }}</a>
@@ -107,8 +107,8 @@
                             <a class="nav-link" href="#">{{ __('Generate Report') }}</a>
                         </li>
                         @elseif (auth()->user()->is_customer)
-                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
-                            <a class="nav-link" href="#">{{ __('Reservation') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == 'room/c/reservation' ? 'active':'')?>">
+                            <a class="nav-link" href="/room/c/reservation">{{ __('Reservation') }}</a>
                         </li>
                         <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
                             <a class="nav-link" href="#">{{ __('Feedback') }}</a>
@@ -163,7 +163,7 @@
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown"
-                                class="nav-link dropdown-toggle  <?=(Route::current()->uri() == '/profile' ? 'active':'')?>"
+                                class="nav-link dropdown-toggle text-capitalize  <?=(Route::current()->uri() == '/profile' ? 'active':'')?>"
                                 href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                 v-pre>
                                 {{ Auth::user()->name }}

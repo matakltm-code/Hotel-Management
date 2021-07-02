@@ -6,6 +6,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuditController;
 use App\Http\Controllers\ChangepasswordController;
+use App\Http\Controllers\Reservation;
 use App\Http\Controllers\RoomManagementController;
 use App\Models\User;
 
@@ -98,3 +99,11 @@ Route::get('/audits/{audit}/edit', [AuditController::class, 'edit']);
 Route::patch('/audits/{audit}', [AuditController::class, 'update']);
 Route::delete('/audits/{audit}', [AuditController::class, 'destroy']);
 Route::get('/audits/report', [AuditController::class, 'audit_dashboard']);
+
+
+// receptionist
+Route::get('/room/r/reservation', [Reservation::class, 'receptionist_reservation']);
+Route::patch('/room/r/reservation/{BookedRoom}', [Reservation::class, 'cancel_or_approve_customer_reservation']);
+// customer
+Route::get('/room/c/reservation', [Reservation::class, 'customer_reservation']);
+Route::patch('/room/c/reservation/{BookedRoom}', [Reservation::class, 'cancel_customer_reservation']);

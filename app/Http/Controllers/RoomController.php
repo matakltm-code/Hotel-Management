@@ -54,10 +54,13 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'room_id' => ['required', 'int', 'after:now'],
+            'room_id' => ['required', 'int'],
+            // 'start_date' => ['required', 'date', 'after:now'],
             'start_date' => ['required', 'date'],
             'end_date' => ['required', 'date', 'after:start_date'],
-            'trf' => ['required', 'unique:booked_rooms,trf']
+            'trf' => ['required', 'unique:booked_rooms,trf'],
+            'bank_book' => ['required', 'string'],
+            'total_price' => ['required', 'integer'],
         ]);
         //  Check the user insertes true available date : this might chage in the html or url se we must do this check
         // $room = Room::with('booked_rooms')->where('id', '=', $data['room_id'])->get();
@@ -86,6 +89,8 @@ class RoomController extends Controller
             'end_date' => $data['end_date'],
             'trf' => $data['trf'],
             'status' => 'pending',
+            'bank_book' => $data['bank_book'],
+            'total_price' => $data['total_price'],
         ]);
         return back()->with('success', 'Room is successfuly reserved!');
     }

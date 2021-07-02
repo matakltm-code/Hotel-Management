@@ -21,6 +21,9 @@ class CreateBookedRoomsTable extends Migration
             $table->date('end_date');
             $table->string('trf')->unique(); // Bank transaction reference number
             $table->string('status')->default('pending'); // pending, approved, cancel
+            $table->string('cancel_by')->nullable(); // customer, receptionist
+            $table->string('bank_book'); // customer, receptionist
+            $table->decimal('total_price')->nullable(); // (start_date - end_date) * price/day
             $table->timestamps();
         });
     }
