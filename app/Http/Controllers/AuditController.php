@@ -14,10 +14,11 @@ class AuditController extends Controller
 
     public function index()
     {
+        // dd(auth()->user()->user_type);
         // Check user is admin
-        if (auth()->user()->user_type != 'auditor' || auth()->user()->user_type != 'manager') {
-            return redirect('/')->with('error', 'Your are not allowed to see this page');
-        }
+        // if (auth()->user()->user_type !== 'auditor' || auth()->user()->user_type !== 'manager') {
+        //     return redirect('/')->with('error', 'Your are not allowed to see this page');
+        // }
 
         $audits = Audit::orderBy('created_at', 'DESC')->paginate(10);
 

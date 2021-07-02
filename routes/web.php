@@ -8,6 +8,7 @@ use App\Http\Controllers\AuditController;
 use App\Http\Controllers\ChangepasswordController;
 use App\Http\Controllers\Reservation;
 use App\Http\Controllers\RoomManagementController;
+use App\Http\Controllers\MessageController;
 use App\Models\User;
 
 Route::view('/', 'welcome');
@@ -86,11 +87,10 @@ Route::get('/employee-management', function () {
         'employees' => User::where('user_type', '!=', 'customer')->paginate(10)
     ]);
 });
-
+Route::get('/customer/feed-back', [MessageController::class, 'feedback_from_customer_to_manager']);
 
 
 // Auditor
-
 Route::get('/audits', [AuditController::class, 'index']);
 Route::get('/audits/create', [AuditController::class, 'create']);
 Route::post('/audits', [AuditController::class, 'store']);
@@ -99,11 +99,22 @@ Route::get('/audits/{audit}/edit', [AuditController::class, 'edit']);
 Route::patch('/audits/{audit}', [AuditController::class, 'update']);
 Route::delete('/audits/{audit}', [AuditController::class, 'destroy']);
 Route::get('/audits/report', [AuditController::class, 'audit_dashboard']);
+Route::get('/report/receptionist', [MessageController::class, 'auditor_report_from_receptionist']);
+
+
 
 
 // receptionist
 Route::get('/room/r/reservation', [Reservation::class, 'receptionist_reservation']);
 Route::patch('/room/r/reservation/{BookedRoom}', [Reservation::class, 'cancel_or_approve_customer_reservation']);
+Route::get('/feedback-from-customer', [MessageController::class, 'feedback_from_customer_to_receptionist']);
+Route::get('/generate-report-to-auditor', [MessageController::class, 'generate_report_to_auditor']);
+Route::post('/generate-report-to-auditor', [MessageController::class, 'store_generate_report_to_auditor']);
+
+
+
 // customer
 Route::get('/room/c/reservation', [Reservation::class, 'customer_reservation']);
 Route::patch('/room/c/reservation/{BookedRoom}', [Reservation::class, 'cancel_customer_reservation']);
+Route::get('/feed-back', [MessageController::class, 'customer_feedback']);
+Route::post('/feed-back', [MessageController::class, 'store_customer_feedback']);
