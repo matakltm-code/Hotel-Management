@@ -15,11 +15,7 @@ class RoomController extends Controller
         if ($start_date <= $db_end_date) return false;
         return true;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         // Get available rooms

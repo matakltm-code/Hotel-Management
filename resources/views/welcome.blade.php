@@ -38,16 +38,16 @@
     {{-- Check availability --}}
     <div class="col-md-8 offset-md-2 py-5">
         <h1 class="text-center">Check Availability</h1>
-        <form>
+        <form method="get" action="/rooms">
+            {{-- @csrf --}}
             <div class="form-row">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Arrival Date" name="from" id="from">
+                    <input type="date" class="form-control" placeholder="Arrival Date" name="start_date" id="start_date"
+                        value="{{ old('start_date') }}">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Departure Date" name="to" id="to">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Last name">
+                    <input type="date" class="form-control" placeholder="Departure Date" name="end_date" id="end_date"
+                        value="{{ old('end_date') }}">
                 </div>
                 <div class="col">
                     <button type="submit" class="btn btn-md btn-success">Check Availability</button>
@@ -231,7 +231,7 @@
     //     .on( "change", function() {
     //         from.datepicker( "option", "maxDate", getDate( this ) );
     //     });
-    
+
     //     function getDate( element ) {
     //     var date;
     //     try {
@@ -239,7 +239,7 @@
     //     } catch( error ) {
     //         date = null;
     //     }
-    
+
     //     return date;
     //     }
     // } );
