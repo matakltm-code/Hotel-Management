@@ -22,10 +22,23 @@ class Reservation extends Controller
         if (auth()->user()->user_type != 'receptionist') {
             return redirect('/')->with('error', 'Your are not allowed to see this page');
         }
+
+        $booked_rooms = [];
+        $searchBookedRoom = '';
+        if (isset($_GET['book_number']) && !empty($_GET['book_number'])) {
+            $searchBookedRoom = $_GET['book_number'];
+            $booked_rooms =
+                BookedRoom::where('trf', $searchBookedRoom)->paginate(10);
+        } else {
+            $booked_rooms
+                = BookedRoom::orderBy('created_at', 'DESC')->paginate(10);
+        }
+
         // Get all reservation
-        $booked_rooms = BookedRoom::orderBy('created_at', 'DESC')->paginate(10);
+        // $booked_rooms = BookedRoom::orderBy('created_at', 'DESC')->paginate(10);
         return view('receptionist.reservation.receptionist_reservation', [
-            'booked_rooms' => $booked_rooms
+            'booked_rooms' => $booked_rooms,
+            'searchBookedRoom' => $searchBookedRoom
         ]);
     }
 

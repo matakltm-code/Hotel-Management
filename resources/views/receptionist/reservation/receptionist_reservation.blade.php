@@ -8,7 +8,20 @@
                 <div class="card-header">{{ __('Reservation history') }}</div>
 
                 <div class="card-body">
-                    <p>Your last 10 reserved rooms</p>
+                    {{-- <p>Your last 10 reserved rooms</p> --}}
+                    <div class="col-md-12 p-0 mb-4">
+                        <form action="/room/r/reservation" method="get">
+                            <div class="input-group">
+                                <input name="book_number" type="text" class="form-control"
+                                    placeholder="Search Room using TRF Number" aria-label="Search Room using TRF Number"
+                                    aria-describedby="basic-addon2"
+                                    value="{{ old('searchBookedRoom') ?? $searchBookedRoom }}">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-secondary">Search Room</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     {{-- </div> --}}
                     <table class="table table-striped">
                         <thead>
