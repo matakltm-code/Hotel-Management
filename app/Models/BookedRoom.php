@@ -32,10 +32,18 @@ class BookedRoom extends Model
     {
         $result = '';
         if ($canceled_by == 'customer') {
-            $result = '<b class="text-danger">You canceled this reservation</b>';
+            if (auth()->user()->user_type === 'customer') {
+                $result = '<b class="text-danger">You canceled this reservation</b>';
+            } else {
+                $result = '<b class="text-danger">Cancel this reservation by owner</b>';
+            }
         }
         if ($canceled_by == 'receptionist') {
-            $result = '<b class="text-danger">Your reservation is canceled by our staff memeber(receptionist)</b>';
+            if (auth()->user()->user_type === 'customer') {
+                $result = '<b class="text-danger">Your reservation is canceled by our staff memeber(receptionist)</b>';
+            } else {
+                $result = '<b class="text-danger">You cancel this reservation(receptionist)</b>';
+            }
         }
 
 

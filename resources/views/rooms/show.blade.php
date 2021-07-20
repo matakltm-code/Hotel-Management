@@ -34,16 +34,19 @@
                 @auth
 
                 @if (auth()->user()->is_customer)
+                @php
+                $total_days = \Carbon\Carbon::parse($start_date)->diffinDays(\Carbon\Carbon::parse($end_date));
+                @endphp
                 <div class="col-md-12">
                     <p class="font-weight-bold">Reserve a room - Pay to our Ethiopia Commercial Bank</p>
-                    <p class="font-weight-bold h5 text-danger">Total Price: start-end*price</p>
+                    <p class="font-weight-bold h5 text-danger">Total Price: {{ $total_days * $room->price }} ETB</p>
                     <form method="post" action="/rooms">
                         @csrf
                         {{-- hidden values --}}
                         <input type="hidden" name="room_id" value="{{ $room->id }}">
                         <input type="hidden" name="start_date" value="{{ $start_date }}">
                         <input type="hidden" name="end_date" value="{{ $end_date }}">
-                        <input type="hidden" name="total_price" value="0">
+                        <input type="hidden" name="total_price" value="{{$total_days * $room->price}}">
                         <div class="form-group row">
                             <label for="bank_book" class="col-12 col-form-label">Book Number</label>
                             <div class="col-12">

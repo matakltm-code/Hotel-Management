@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -14,6 +14,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Customer</th>
                                 <th scope="col">Reservation Date</th>
                                 <th scope="col">Bank Detail</th>
                                 <th scope="col">Reserved on</th>
@@ -26,7 +27,12 @@
                             @foreach ($booked_rooms as $booked_room)
 
                             <tr>
-                                <th class="text-capitalize" scope="row">{{ $loop->iteration }}</th>
+                                <td class="text-capitalize" scope="row">{{ $loop->iteration }}</td>
+                                <td>
+                                    Name: {{ $booked_room->user->name }} <br>
+                                    Email: {{ $booked_room->user->email }} <br>
+                                    Phone: {{ $booked_room->user->phone }} <br>
+                                </td>
                                 <td>
                                     From <strong>{{ $booked_room->start_date }}</strong> <br>
                                     To: <strong>{{ $booked_room->end_date }}</strong> <br>

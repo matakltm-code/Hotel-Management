@@ -42,6 +42,7 @@
                 // Check if the user select start_date and end_datefor availability
                 if($start_date != '' && $end_date != '' & !empty($start_date) && !empty($end_date)){
                 foreach ($room->booked_rooms as $booked_room) {
+                if ($booked_room->status != 'cancel') {
                 if (checkDateIsAvailableForReservation($start_date, $end_date, $booked_room->start_date,
                 $booked_room->end_date)) {
                 $skip_room = false;
@@ -49,6 +50,7 @@
                 // This room is reserved so we skip this room
                 $skip_room = true;
                 } // else
+                }
                 } // foreach ($room->booked_rooms as $booked_room) {
                 } // end of if($start_date != '' && $end_date != '' & !empty($start_date) && !empty($end_date)){
                 // if not available then skip the room

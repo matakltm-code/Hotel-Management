@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Audit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AuditController extends Controller
 {
@@ -125,8 +126,8 @@ class AuditController extends Controller
 
     public function audit_dashboard()
     {
-        $total_expense = 0;
-        $total_revenue = 0;
+        $total_expense = DB::table('audits')->where('audit_type', 'expense')->sum('amount');;
+        $total_revenue = DB::table('audits')->where('audit_type', 'revenue')->sum('amount');;
 
         return view('auditor.audit.audit-dashboard', [
             'total_expense' => $total_expense,

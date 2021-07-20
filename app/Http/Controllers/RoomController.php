@@ -65,10 +65,12 @@ class RoomController extends Controller
         // dd($room->booked_rooms);
         $skip_room = false;
         foreach ($room->booked_rooms as $booked_room) {
-            if ($this->checkDateIsAvailableForReservation($data['start_date'], $data['end_date'], $booked_room->start_date, $booked_room->end_date)) {
-                $skip_room = false;
-            } else {
-                $skip_room = true;
+            if ($booked_room->status != 'cancel') {
+                if ($this->checkDateIsAvailableForReservation($data['start_date'], $data['end_date'], $booked_room->start_date, $booked_room->end_date)) {
+                    $skip_room = false;
+                } else {
+                    $skip_room = true;
+                }
             }
         }
         if ($skip_room) {
